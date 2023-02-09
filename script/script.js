@@ -3,10 +3,43 @@
 const header = document.querySelector(".header");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
+const section1 = document.querySelector("#section--1");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnLogin = document.querySelectorAll(".btn--login");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+
+btnScrollTo.addEventListener("click", function (e) {
+    // const s1coords = section1.getBoundingClientRect();
+    // console.log(s1coords);
+
+    // console.log(e.target.getBoundingClientRect());
+
+    //old way to set
+    // window.scrollTo(
+    //     s1coords.left + window.pageXOffset,
+    //     s1coords.top + window.pageYOffset
+    // );
+
+    //old way but new method
+    // window.scrollTo(
+    //     s1coords.left + window.scrollX,
+    //     s1coords.top + window.scrollY
+    // );
+
+    //old way with passing object with behavior--supported by all browser
+    // window.scrollTo({
+    //     left: s1coords.left + window.scrollX,
+    //     top: s1coords.top + window.scrollY,
+    //     behavior: "smooth",
+    // });
+
+    //modern way but not supported by all browsers-->
+    section1.scrollIntoView({
+        behavior: "smooth",
+    });
+});
 
 const openModal = function () {
     modal.classList.remove("hidden");
