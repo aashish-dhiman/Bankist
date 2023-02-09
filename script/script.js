@@ -37,7 +37,7 @@ cookie.style.width = "105%";
 cookie.style.height = "60px";
 cookie.style.backgroundColor = "#37383d";
 cookie.innerHTML =
-    'We use Cookies for better functionality.<button class="btn btn--close-cookie">Accept</button>';
+    '<p>We use Cookies for better functionality.</p> <button class="btn btn--close-cookie">Accept</button>';
 header.append(cookie);
 
 document
