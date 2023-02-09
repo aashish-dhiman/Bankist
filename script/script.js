@@ -11,12 +11,17 @@ const btnLogin = document.querySelectorAll(".btn--login");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 
 btnScrollTo.addEventListener("click", function (e) {
+    //modern way but not supported by all browsers-->
+    section1.scrollIntoView({
+        behavior: "smooth",
+    });
+
+    //old way to set
     // const s1coords = section1.getBoundingClientRect();
     // console.log(s1coords);
 
     // console.log(e.target.getBoundingClientRect());
 
-    //old way to set
     // window.scrollTo(
     //     s1coords.left + window.pageXOffset,
     //     s1coords.top + window.pageYOffset
@@ -34,13 +39,31 @@ btnScrollTo.addEventListener("click", function (e) {
     //     top: s1coords.top + window.scrollY,
     //     behavior: "smooth",
     // });
-
-    //modern way but not supported by all browsers-->
-    section1.scrollIntoView({
-        behavior: "smooth",
-    });
 });
 
+//smooth scrolling for sections--> but inefficient if there are lot of sections this requires multiple calling of functions
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//     el.addEventListener("click", function (e) {
+//         e.preventDefault();
+//         // console.log(e.target);
+//         // const id = e.target.getAttribute('href');
+//         const id = this.getAttribute("href");
+//         // console.log(id);
+//         document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//     });
+// });
+
+//better approach using event delegation-->
+//event listener on parent element and catch the event on child element at bubbling up time
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+    e.preventDefault();
+    // console.log(e.target);
+    const id = e.target.getAttribute("href");
+    // console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+});
+
+//modal pop up
 const openModal = function () {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -66,7 +89,7 @@ document.addEventListener("keydown", function (e) {
 // cookie section
 const cookie = document.createElement("div");
 cookie.classList.add("cookie-message");
-cookie.style.width = "105%";
+cookie.style.width = "100vw";
 cookie.style.height = "60px";
 cookie.style.backgroundColor = "#37383d";
 cookie.innerHTML =
