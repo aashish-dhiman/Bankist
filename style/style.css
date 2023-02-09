@@ -543,7 +543,7 @@ h4 {
 
 /* FOOTER */
 .footer {
-    padding: 10rem 3rem;
+    padding: 5rem 3rem;
     background-color: #37383d;
 }
 
@@ -551,6 +551,7 @@ h4 {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 5rem;
 }
 
@@ -577,9 +578,6 @@ h4 {
     text-align: center;
 }
 
-.footer__copyright .footer__link {
-    font-size: 1.4rem;
-}
 
 /* MODAL WINDOW */
 .modal {
