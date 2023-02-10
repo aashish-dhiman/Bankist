@@ -1,5 +1,6 @@
 "use strict";
 
+// ///////////////////////////////////
 const header = document.querySelector(".header");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -7,11 +8,21 @@ const section1 = document.querySelector("#section--1");
 const tabs = document.querySelectorAll(".operations__tab");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const tabContent = document.querySelectorAll(".operations__content");
+const nav = document.querySelector(".nav");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnLogin = document.querySelectorAll(".btn--login");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
+
+////////////////////////////////
+// event listeners-->
+nav.addEventListener("mouseover", function (e) {
+    hoverState(e, 0.5);
+});
+nav.addEventListener("mouseout", function (e) {
+    hoverState(e, 1);
+});
 
 btnScrollTo.addEventListener("click", function (e) {
     //modern way but not supported by all browsers-->
@@ -66,6 +77,14 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
 });
 
+//login
+[...btnLogin].forEach(function (el) {
+    el.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.open("https://bankist-aashish.netlify.app/");
+    });
+});
+
 //tabbed component-->using event delegations
 tabsContainer.addEventListener("click", function (e) {
     const clicked = e.target.closest(".operations__tab");
@@ -87,7 +106,26 @@ tabsContainer.addEventListener("click", function (e) {
         .classList.add("operations__content--active");
 });
 
-//modal pop up
+/////////////////////////////////////
+//functions-->
+
+//nav  hover effect-->
+const hoverState = function (e, opacity) {
+    // console.log(e.target);
+    if (e.target.classList.contains("nav__link")) {
+        const clicked = e.target;
+        const sibling = e.target.closest(".nav").querySelectorAll(".nav__link");
+        const logo = e.target.closest(".nav").querySelector(".nav__logo");
+        // console.log(logo);
+        sibling.forEach((el) => {
+            if (el !== clicked) el.style.opacity = opacity;
+        });
+
+        logo.style.opacity = opacity;
+    }
+};
+
+//modal pop up-->
 const openModal = function () {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -110,26 +148,18 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-//login
-[...btnLogin].forEach(function (el) {
-    el.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.open("https://bankist-aashish.netlify.app/");
-    });
-});
-
 // cookie section
-const cookie = document.createElement("div");
-cookie.classList.add("cookie-message");
-cookie.style.width = "100vw";
-cookie.style.height = "60px";
-cookie.style.backgroundColor = "#37383d";
-cookie.innerHTML =
-    '<p>We use Cookies for better functionality.</p> <button class="btn btn--close-cookie">Accept</button>';
-header.append(cookie);
+// const cookie = document.createElement("div");
+// cookie.classList.add("cookie-message");
+// cookie.style.width = "100vw";
+// cookie.style.height = "60px";
+// cookie.style.backgroundColor = "#37383d";
+// cookie.innerHTML =
+//     '<p>We use Cookies for better functionality.</p> <button class="btn btn--close-cookie">Accept</button>';
+// header.append(cookie);
 
-document
-    .querySelector(".btn--close-cookie")
-    .addEventListener("click", function () {
-        cookie.remove();
-    });
+// document
+//     .querySelector(".btn--close-cookie")
+//     .addEventListener("click", function () {
+//         cookie.remove();
+//     });
