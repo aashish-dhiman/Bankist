@@ -92,6 +92,11 @@ body {
     transition: all 0.3s;
 }
 
+.btn-flex {
+    display: flex;
+    margin: 20px auto;
+}
+
 p {
     color: #666;
 }
