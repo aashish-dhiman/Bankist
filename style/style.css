@@ -120,9 +120,9 @@ img {
 }
 
 /* nav and sticky class at the same time */
-.nav.sticky {
+.sticky {
     position: fixed;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .nav__logo {
@@ -150,6 +150,11 @@ img {
     transition: all 0.3s;
 }
 
+.nav__link:hover {
+    color: #080808;
+    font-weight: 500;
+}
+
 .nav__link--btn:link,
 .nav__link--btn:visited {
     padding: 0.8rem 2.5rem;
@@ -162,7 +167,7 @@ img {
 .nav__link--btn:active {
     color: inherit;
     background-color: var(--color-primary-darker);
-    color: #333;
+    color: #080808;
 }
 
 /* HEADER */
@@ -578,7 +583,6 @@ h4 {
     text-align: center;
 }
 
-
 /* MODAL WINDOW */
 .modal {
     position: fixed;
@@ -666,8 +670,8 @@ h4 {
     font-weight: 400;
 }
 
-@media only screen and (max-width: 900px){
-    body{
+@media only screen and (max-width: 900px) {
+    body {
         width: 1000px;
     }
 }

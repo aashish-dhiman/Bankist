@@ -125,6 +125,14 @@ const hoverState = function (e, opacity) {
     }
 };
 
+//sticky nav-->
+const coordinates = section1.getBoundingClientRect();
+// console.log(coordinates);
+window.addEventListener("scroll", function () {
+    if (window.scrollY > coordinates.top) nav.classList.add("sticky");
+    else nav.classList.remove("sticky");
+});
+
 //modal pop up-->
 const openModal = function () {
     modal.classList.remove("hidden");
