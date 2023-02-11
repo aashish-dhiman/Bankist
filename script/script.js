@@ -126,12 +126,30 @@ const hoverState = function (e, opacity) {
 };
 
 //sticky nav-->
-const coordinates = section1.getBoundingClientRect();
-// console.log(coordinates);
-window.addEventListener("scroll", function () {
-    if (window.scrollY > coordinates.top) nav.classList.add("sticky");
+// const coordinates = section1.getBoundingClientRect();
+// // console.log(coordinates);
+// window.addEventListener("scroll", function () {
+//     if (window.scrollY > coordinates.top) nav.classList.add("sticky");
+//     else nav.classList.remove("sticky");
+// });
+
+//sticky nav using intersection observer api-->
+const navHeight = nav.getBoundingClientRect().height;
+// console.log(navHeight);
+const observeHeader = function (entries, observer) {
+    const [entry] = entries;
+    // console.log(entry);
+    // console.log(observer);
+    if (!entry.isIntersecting) nav.classList.add("sticky");
     else nav.classList.remove("sticky");
-});
+};
+const options = {
+    root: null,
+    threshold: 0.1,
+    rootMargin: `-${navHeight}px`,
+};
+const observer = new IntersectionObserver(observeHeader, options);
+observer.observe(header);
 
 //modal pop up-->
 const openModal = function () {
