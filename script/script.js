@@ -12,6 +12,7 @@ const nav = document.querySelector(".nav");
 const allSection = document.querySelectorAll(".section");
 const featuresImg = document.querySelectorAll(".features__img");
 const slides = document.querySelectorAll(".slide");
+const slideDots = document.querySelectorAll(".dots");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
@@ -194,29 +195,57 @@ featuresImg.forEach((img) => {
 //slider-->
 let currSlide = 0;
 let maxSlide = slides.length;
-//to solve the initial doubling up  of slides
-const nextSlide = function () {
-    if (currSlide === maxSlide - 1) currSlide = 0;
-    else currSlide++;
-
-    changeSlide(currSlide);
-};
-const prevSlide = function () {
-    if (currSlide === 0) currSlide = maxSlide - 1;
-    else currSlide--;
-
-    changeSlide(currSlide);
-};
 
 const changeSlide = function (slide) {
     slides.forEach((s, i) => {
         s.style.transform = `translateX(${100 * (i - slide)}%)`;
     });
 };
+const nextSlide = function () {
+    if (currSlide === maxSlide - 1) currSlide = 0;
+    else currSlide++;
 
+    changeSlide(currSlide);
+    activateDot(currSlide);
+};
+const prevSlide = function () {
+    if (currSlide === 0) currSlide = maxSlide - 1;
+    else currSlide--;
+
+    changeSlide(currSlide);
+    activateDot(currSlide);
+};
+
+//to solve the initial doubling up  of slides
 changeSlide(0);
+
 btnSlideRight.addEventListener("click", nextSlide);
 btnSlideLeft.addEventListener("click", prevSlide);
+
+document.addEventListener("keydown", function (e) {
+    e.key === "ArrowLeft" && prevSlide();
+    e.key === "ArrowRight" && nextSlide();
+});
+
+const activateDot = function (slide) {
+    document
+        .querySelectorAll(".dots__dot")
+        .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+    document
+        .querySelector(`.dots__dot[data-slide='${slide}']`)
+        .classList.add("dots__dot--active");
+};
+
+slideDots.forEach(function (s) {
+    s.addEventListener("click", function (e) {
+        if (e.target.classList.contains("dots__dot")) {
+            const slide = e.target.dataset.slide;
+            changeSlide(slide);
+            activateDot(slide);
+        }
+    });
+});
 
 //modal pop up-->
 const openModal = function () {
