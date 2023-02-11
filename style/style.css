@@ -456,8 +456,6 @@ h4 {
     margin-right: 1.75rem;
     cursor: pointer;
     transition: all 0.5s;
-
-    /* Only necessary when overlying images */
     /* box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.7); */
 }
 
@@ -466,7 +464,6 @@ h4 {
 }
 
 .dots__dot--active {
-    /* background-color: #fff; */
     background-color: #888;
     opacity: 1;
 }
