@@ -9,6 +9,7 @@ const tabs = document.querySelectorAll(".operations__tab");
 const tabsContainer = document.querySelector(".operations__tab-container");
 const tabContent = document.querySelectorAll(".operations__content");
 const nav = document.querySelector(".nav");
+const allSection = document.querySelectorAll(".section");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
@@ -150,6 +151,25 @@ const options = {
 };
 const observer = new IntersectionObserver(observeHeader, options);
 observer.observe(header);
+
+//section visible effects-->
+const revealSection = function (entries, observer) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove("section--hidden");
+
+    // console.log(entry);
+    observer.unobserve(entry.target);
+};
+const SectionObserver = new IntersectionObserver(revealSection, {
+    root: null,
+    threshold: 0.15,
+});
+
+allSection.forEach((section) => {
+    SectionObserver.observe(section);
+    section.classList.add("section--hidden");
+});
 
 //modal pop up-->
 const openModal = function () {
