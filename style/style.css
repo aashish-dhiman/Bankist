@@ -413,15 +413,18 @@ h4 {
     position: absolute;
     top: 50%;
     z-index: 10;
-
     border: none;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     font-family: inherit;
-    color: #333;
+    color: #080808;
     border-radius: 50%;
     height: 5.5rem;
     width: 5.5rem;
     font-size: 3.25rem;
+}
+
+.slider__btn:hover {
+    box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
     cursor: pointer;
 }
 

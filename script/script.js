@@ -11,11 +11,14 @@ const tabContent = document.querySelectorAll(".operations__content");
 const nav = document.querySelector(".nav");
 const allSection = document.querySelectorAll(".section");
 const featuresImg = document.querySelectorAll(".features__img");
+const slides = document.querySelectorAll(".slide");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnLogin = document.querySelectorAll(".btn--login");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
+const btnSlideRight = document.querySelector(".slider__btn--right");
+const btnSlideLeft = document.querySelector(".slider__btn--left");
 
 ////////////////////////////////
 // event listeners-->
@@ -187,6 +190,33 @@ const imgObserver = new IntersectionObserver(loadImg, {
 featuresImg.forEach((img) => {
     imgObserver.observe(img);
 });
+
+//slider-->
+let currSlide = 0;
+let maxSlide = slides.length;
+//to solve the initial doubling up  of slides
+const nextSlide = function () {
+    if (currSlide === maxSlide - 1) currSlide = 0;
+    else currSlide++;
+
+    changeSlide(currSlide);
+};
+const prevSlide = function () {
+    if (currSlide === 0) currSlide = maxSlide - 1;
+    else currSlide--;
+
+    changeSlide(currSlide);
+};
+
+const changeSlide = function (slide) {
+    slides.forEach((s, i) => {
+        s.style.transform = `translateX(${100 * (i - slide)}%)`;
+    });
+};
+
+changeSlide(0);
+btnSlideRight.addEventListener("click", nextSlide);
+btnSlideLeft.addEventListener("click", prevSlide);
 
 //modal pop up-->
 const openModal = function () {
