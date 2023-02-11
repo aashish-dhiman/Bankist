@@ -10,6 +10,7 @@ const tabsContainer = document.querySelector(".operations__tab-container");
 const tabContent = document.querySelectorAll(".operations__content");
 const nav = document.querySelector(".nav");
 const allSection = document.querySelectorAll(".section");
+const featuresImg = document.querySelectorAll(".features__img");
 
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
@@ -169,6 +170,22 @@ const SectionObserver = new IntersectionObserver(revealSection, {
 allSection.forEach((section) => {
     SectionObserver.observe(section);
     section.classList.add("section--hidden");
+});
+
+//lazy loading images-->
+const loadImg = function (entries) {
+    const [entry] = entries;
+    // console.log(entry);
+    if (!entry.isIntersecting) return;
+    entry.target.classList.remove("lazy-img");
+};
+const imgObserver = new IntersectionObserver(loadImg, {
+    root: null,
+    threshold: 0.05,
+});
+
+featuresImg.forEach((img) => {
+    imgObserver.observe(img);
 });
 
 //modal pop up-->
