@@ -195,6 +195,7 @@ btnLoan.addEventListener("click", function (e) {
         currentAccount.movementsDates.push(`${year},${month},${day}`);
 
         updateUI(currentAccount);
+        alert("Loan Successful!");
     } else {
         alert("Not a valid amount!");
     }
