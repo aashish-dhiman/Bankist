@@ -220,6 +220,12 @@ btnClose.addEventListener("click", function (e) {
 
         inputCloseUsername.value = inputClosePin.value = "";
 
+        inputLoginUsername.value = inputLoginPin.value = "";
+        inputLoginUsername.style.cursor = "text";
+        inputLoginPin.style.cursor = "text";
+        inputLoginUsername.removeAttribute("readonly");
+        inputLoginPin.removeAttribute("readonly");
+
         labelWelcome.textContent = `Log in to access your account`;
 
         setTimeout(() => alert("Account deleted successfully!"), 500);
