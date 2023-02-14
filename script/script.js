@@ -22,7 +22,22 @@ const btnSlideRight = document.querySelector(".slider__btn--right");
 const btnSlideLeft = document.querySelector(".slider__btn--left");
 
 ////////////////////////////////
-// event listeners-->
+//nav  hover effect-->
+
+const hoverState = function (e, opacity) {
+    // console.log(e.target);
+    if (e.target.classList.contains("nav__link")) {
+        const clicked = e.target;
+        const sibling = e.target.closest(".nav").querySelectorAll(".nav__link");
+        const logo = e.target.closest(".nav").querySelector(".nav__logo");
+        // console.log(logo);
+        sibling.forEach((el) => {
+            if (el !== clicked) el.style.opacity = opacity;
+        });
+
+        logo.style.opacity = opacity;
+    }
+};
 nav.addEventListener("mouseover", function (e) {
     hoverState(e, 0.5);
 });
@@ -87,7 +102,8 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 [...btnLogin].forEach(function (el) {
     el.addEventListener("click", function (e) {
         e.preventDefault();
-        window.open("https://bankist-aashish.netlify.app/");
+        // window.open("https://bankist-aashish.netlify.app/");
+        window.open("bank.html");
     });
 });
 
@@ -113,23 +129,6 @@ tabsContainer.addEventListener("click", function (e) {
 });
 
 /////////////////////////////////////
-//functions-->
-
-//nav  hover effect-->
-const hoverState = function (e, opacity) {
-    // console.log(e.target);
-    if (e.target.classList.contains("nav__link")) {
-        const clicked = e.target;
-        const sibling = e.target.closest(".nav").querySelectorAll(".nav__link");
-        const logo = e.target.closest(".nav").querySelector(".nav__logo");
-        // console.log(logo);
-        sibling.forEach((el) => {
-            if (el !== clicked) el.style.opacity = opacity;
-        });
-
-        logo.style.opacity = opacity;
-    }
-};
 
 //sticky nav-->
 // const coordinates = section1.getBoundingClientRect();
@@ -142,7 +141,7 @@ const hoverState = function (e, opacity) {
 //sticky nav using intersection observer api-->
 const navHeight = nav.getBoundingClientRect().height;
 // console.log(navHeight);
-const observeHeader = function (entries, observer) {
+const observeHeader = function (entries) {
     const [entry] = entries;
     // console.log(entry);
     // console.log(observer);
